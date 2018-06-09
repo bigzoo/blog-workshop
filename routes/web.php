@@ -13,9 +13,13 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/posts', 'PostsController@index')->name('posts.index');
 Route::get('/posts/create', 'PostsController@create')->name('posts.create');
 Route::get('/posts/{id}', 'PostsController@show')->name('posts.show');
 Route::post('/posts', 'PostsController@store')->name('posts.store');
+Route::get('/posts/{id}/edit','PostsController@edit')->name('posts.edit');
+Route::put('/posts/{id}', 'PostsController@update')->name('posts.update');
+Route::get('/posts/{id}/delete', 'PostsController@delete')->name('posts.delete');
+

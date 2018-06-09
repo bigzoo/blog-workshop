@@ -29,4 +29,24 @@ class PostsController extends Controller
         $post = Post::create($request->only(['title', 'content']));
         return redirect()->route('posts.show', ['id' => $post->id]);
     }
+
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('posts.edit', ['post' => $post]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $post = Post::findOrFail($id);
+        $post->update($request->only(['title', 'content']));
+        return redirect()->route('posts.show', ['id' => $post->id]);
+    }
+
+    public function delete($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->delete();
+        return redirect()->route('posts.index');
+    }
 }
